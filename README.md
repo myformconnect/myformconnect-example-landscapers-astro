@@ -52,7 +52,8 @@ npm run preview
 │   │   ├── index.astro      # Home page
 │   │   ├── services.astro   # Services overview
 │   │   ├── projects.astro   # Portfolio with category filtering
-│   │   └── contact.astro    # Estimate request form and booking widget
+│   │   ├── estimate.astro   # Dedicated project estimate request page
+│   │   └── contact.astro    # Consultation booking and direct message form
 │   ├── scripts/
 │   │   └── form-handler.ts  # Client-side AJAX submission handler
 │   └── styles/

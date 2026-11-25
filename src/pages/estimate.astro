@@ -1,0 +1,214 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import CTASection from '../components/CTASection.astro';
+---
+
+<MainLayout
+  title="Request a Free Project Estimate | Evergreen Landscapes"
+  description="Request a complimentary, transparent line-item estimate for your master landscape design, lawn installation, patio, or garden renovation."
+  activePath="/estimate"
+>
+  <!-- Page Hero -->
+  <section class="estimate-hero-section section-padding-sm" style="background: linear-gradient(165deg, var(--color-deep-forest) 0%, var(--color-dark-green) 50%, #143527 100%); color: #FFFFFF;">
+    <div class="container text-center">
+      <div class="estimate-hero-inner">
+        <span class="eyebrow eyebrow-light text-gold">Detailed Landscape Proposal</span>
+        <h1 class="estimate-hero-title">Request a Free Project Estimate</h1>
+        <p class="estimate-hero-subtitle">
+          Tell us about your property specifications, preferred disciplines, and project timeline. Our senior estimators will prepare a comprehensive proposal tailored to your vision.
+        </p>
+        <div class="hero-actions">
+          <a href="#estimate-form" class="btn btn-gold btn-lg">
+            <span>Start Estimate Form</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </a>
+          <a href="/contact#booking" class="btn btn-outline-white btn-lg">
+            <span>Prefer an In-Person Site Walk?</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Estimate Form Section -->
+  <section class="estimate-form-section section-padding" id="estimate-form">
+    <div class="container">
+      <div class="estimate-layout-container">
+        <!-- Trust Banner Above Form -->
+        <div class="estimate-trust-bar">
+          <div class="trust-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>Itemized Line-Item Pricing</span>
+          </div>
+          <div class="trust-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>48-Hour Proposal Turnaround</span>
+          </div>
+          <div class="trust-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>Zero Obligation or Pressure</span>
+          </div>
+        </div>
+
+        <!-- Comprehensive Quote Form -->
+        <QuoteForm formId="main-estimate-page-form" />
+
+        <!-- Alternate Consultation Option Notice -->
+        <div class="estimate-alternate-card">
+          <div class="alternate-content">
+            <span class="eyebrow">Need an On-Site Assessment First?</span>
+            <h3 class="alternate-title">Schedule a 30-Minute Grounds Walk</h3>
+            <p class="alternate-desc">
+              If your property has steep contours, drainage concerns, or you'd prefer to discuss possibilities directly on your grounds, book an on-site consultation.
+            </p>
+          </div>
+          <a href="/contact#booking" class="btn btn-secondary btn-md">
+            <span>Book Site Consultation</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <CTASection
+    title="Questions before requesting an estimate?"
+    subtitle="Our landscape superintendents are available to discuss your property plans or answer quick technical questions."
+    primaryCtaText="Send Direct Message"
+    primaryCtaHref="/contact#quick-contact"
+    secondaryCtaText="Call Studio (555) 010-3030"
+    secondaryCtaHref="tel:+15550103030"
+    variant="green"
+  />
+</MainLayout>
+
+<style>
+  .estimate-hero-section {
+    text-align: center;
+    padding-top: clamp(4rem, 7vw, 6rem);
+    padding-bottom: clamp(4rem, 7vw, 6rem);
+  }
+
+  .estimate-hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .estimate-hero-title {
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 1.25rem;
+    width: 100%;
+  }
+
+  .estimate-hero-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    max-width: 720px;
+    margin: 0 auto 2.25rem;
+    line-height: 1.65;
+    text-align: center;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .estimate-form-section {
+    background-color: var(--bg-primary);
+  }
+
+  .estimate-layout-container {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .estimate-trust-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.5rem;
+    padding: 0.85rem 1.25rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .trust-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-dark-green);
+  }
+
+  .trust-pill svg {
+    color: var(--color-primary-green);
+    flex-shrink: 0;
+  }
+
+  .estimate-alternate-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: clamp(1.25rem, 2.5vw, 1.75rem);
+    background: var(--bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    align-items: flex-start;
+  }
+
+  @media (min-width: 768px) {
+    .estimate-alternate-card {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .alternate-content {
+      max-width: 440px;
+    }
+  }
+
+  .alternate-title {
+    font-size: 1.15rem;
+    color: var(--color-dark-green);
+    margin-bottom: 0.35rem;
+  }
+
+  .alternate-desc {
+    font-size: 0.825rem;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+</style>

@@ -1,61 +1,58 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import QuoteForm from '../components/QuoteForm.astro';
-import BookingWidget from '../components/BookingWidget.astro';
+import BookingBubbleModal from '../components/BookingBubbleModal.astro';
 import ContactForm from '../components/ContactForm.astro';
+import CTASection from '../components/CTASection.astro';
 import { COMPANY_INFO } from '../config/forms';
 ---
 
 <MainLayout
-  title="Contact & Commission Inquiries | Evergreen Landscapes"
-  description="Request a formal landscape estimate, schedule an on-site design consultation, or reach our studio directly."
+  title="Contact & Site Consultations | Evergreen Landscapes"
+  description="Connect with our landscape studio, send a direct message, or schedule an on-site landscape consultation. Serving Portland Metro and surrounding communities."
   activePath="/contact"
 >
   <!-- Section 1: Page Hero -->
   <section class="contact-hero-section section-padding-sm" style="background: linear-gradient(165deg, var(--color-deep-forest) 0%, var(--color-dark-green) 50%, #143527 100%); color: #FFFFFF;">
     <div class="container text-center">
       <div class="contact-hero-inner">
-        <span class="eyebrow eyebrow-light text-gold">Client Engagement</span>
-        <h1 class="contact-hero-title">Let's bring your landscape vision to life.</h1>
+        <span class="eyebrow eyebrow-light text-gold">Client Engagement &amp; Studio Desk</span>
+        <h1 class="contact-hero-title">Connect with our Landscape Studio</h1>
         <p class="contact-hero-subtitle">
-          Whether you are planning a master estate transformation, installing a pristine new lawn, or crafting an outdoor dining terrace, we invite your project details below.
+          Have a question or looking to discuss your grounds? Connect directly with our team, send a quick note below, or schedule an on-site consultation.
         </p>
         <div class="contact-hero-actions">
-          <a href="#quote" class="btn btn-gold btn-lg">
-            <span>Request a Free Estimate</span>
+          <a href="#quick-contact" class="btn btn-gold btn-lg">
+            <span>Send a Quick Note</span>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
             </svg>
           </a>
-          <a href="#booking" class="btn btn-outline-white btn-lg">
-            <span>Book a Site Consultation</span>
+          <button type="button" class="btn btn-outline-white btn-lg" data-booking-popup>
+            <span>Book Site Consultation</span>
+          </button>
+          <a href="/estimate" class="btn btn-outline-white btn-lg">
+            <span>Request a Free Estimate</span>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Main Conversion Container -->
-  <section class="contact-main-section section-padding">
+  <!-- Section 2: Studio Coordinates & Send a Quick Note Form -->
+  <section class="direct-contact-section section-padding" id="quick-contact">
     <div class="container">
-      <div class="contact-layout">
-        <!-- Main Forms Column (Quote Form & Booking Widget) -->
-        <div class="forms-column">
-          <!-- Section 2: Project Quote Form -->
-          <div class="form-block">
-            <QuoteForm />
-          </div>
+      <div class="section-header text-center" style="max-width: 680px; margin: 0 auto 3rem;">
+        <span class="eyebrow">Direct Studio Engagement</span>
+        <h2>Studio Coordinates &amp; Direct Message</h2>
+        <p class="section-subtitle">
+          Whether you need immediate contact details or want to send our project estimators a note, reach our studio directly.
+        </p>
+      </div>
 
-          <!-- Section 3: Smart Scheduling Booking Widget -->
-          <div class="form-block">
-            <BookingWidget />
-          </div>
-        </div>
-
-        <!-- Sidebar Column (Studio Info & Quick Question Form) -->
-        <aside class="sidebar-column">
-          <!-- Section 5: Business Information Card -->
+      <div class="contact-two-col-grid">
+        <!-- Left Column: Studio Coordinates -->
+        <div class="studio-details-col">
           <div class="studio-info-card">
             <span class="eyebrow">Studio Coordinates</span>
             <h3 class="info-card-title">Evergreen Landscapes</h3>
@@ -119,23 +116,65 @@ import { COMPANY_INFO } from '../config/forms';
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Section 4: General Contact Form (Quick Question) -->
-          <div class="quick-inquiry-card" id="quick-contact">
-            <div class="quick-header">
-              <span class="eyebrow">Direct Message</span>
-              <h3 class="quick-title">Have a quick question?</h3>
-              <p class="quick-subtitle">
-                Not ready for a full project estimate? Send us a message and our team will get back to you shortly.
+            <!-- Need Detailed Quote Promo Card -->
+            <div class="estimate-promo-box">
+              <span class="promo-tag">Looking for an Estimate?</span>
+              <p class="promo-text">
+                Need a comprehensive itemized quote with material specifications and timeline breakdown?
+              </p>
+              <a href="/estimate" class="promo-link">
+                <span>Go to Free Estimate Page</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+
+            <!-- Fictional Demo Notice -->
+            <div class="demo-disclosure-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+              <span>Demonstration Website. All details are sample demonstration info for MyFormConnect.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Send a Quick Note Form -->
+        <div class="quick-note-col">
+          <div class="direct-message-card">
+            <div class="card-message-header">
+              <span class="eyebrow">Quick Inquiry</span>
+              <h3 class="message-card-title">Send a Quick Note</h3>
+              <p class="message-card-desc">
+                Fill out the fields below and our team will get back to you shortly.
               </p>
             </div>
-            <ContactForm formId="sidebar-contact-form" />
+
+            <ContactForm formId="direct-inquiry-form" isCard={false} />
           </div>
-        </aside>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Interactive Booking Bubble & Modal Trigger -->
+  <BookingBubbleModal />
+
+  <!-- Bottom CTA -->
+  <CTASection
+    title="Ready for a full landscape proposal?"
+    subtitle="Submit your project requirements, scope of work, and site measurements for an itemized breakdown."
+    primaryCtaText="Request a Free Estimate"
+    primaryCtaHref="/estimate"
+    secondaryCtaText="Explore Our Projects"
+    secondaryCtaHref="/projects"
+    variant="light"
+  />
 </MainLayout>
 
 <style>
@@ -164,7 +203,7 @@ import { COMPANY_INFO } from '../config/forms';
   .contact-hero-subtitle {
     color: rgba(255, 255, 255, 0.85);
     font-size: clamp(1.05rem, 2vw, 1.25rem);
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto 2.25rem;
     line-height: 1.65;
     text-align: center;
@@ -179,55 +218,52 @@ import { COMPANY_INFO } from '../config/forms';
     width: 100%;
   }
 
-  /* Two-column layout */
-  .contact-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(3rem, 6vw, 4.5rem);
-    align-items: flex-start;
+  /* Section 2: Direct Contact (Studio Coordinates + Send a Quick Note) */
+  .direct-contact-section {
+    background-color: var(--bg-primary);
   }
 
-  @media (min-width: 1024px) {
-    .contact-layout {
-      grid-template-columns: 1.55fr 1fr;
+  .contact-two-col-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 3.5vw, 3rem);
+    align-items: start;
+  }
+
+  @media (min-width: 960px) {
+    .contact-two-col-grid {
+      grid-template-columns: 1fr 1.25fr;
     }
   }
 
-  .forms-column {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(3.5rem, 6vw, 5rem);
-  }
-
-  .form-block {
+  .studio-details-col,
+  .quick-note-col {
     width: 100%;
   }
 
-  /* Sidebar */
-  .sidebar-column {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-    position: sticky;
-    top: 6rem;
-  }
-
-  .studio-info-card {
+  .studio-info-card,
+  .direct-message-card {
     background: var(--bg-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    padding: clamp(1.75rem, 3.5vw, 2.5rem);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
     box-shadow: var(--shadow-card);
   }
 
-  .info-card-title {
+  .card-message-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .info-card-title,
+  .message-card-title {
     font-size: 1.5rem;
     color: var(--color-dark-green);
     margin-bottom: 0.4rem;
   }
 
-  .info-card-desc {
-    font-size: 0.875rem;
+  .info-card-desc,
+  .message-card-desc {
+    font-size: 0.9rem;
     color: var(--color-text-secondary);
     line-height: 1.6;
     margin-bottom: 1.5rem;
@@ -284,27 +320,62 @@ import { COMPANY_INFO } from '../config/forms';
     text-decoration: underline;
   }
 
-  .quick-inquiry-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: clamp(1.75rem, 3.5vw, 2.5rem);
-    box-shadow: var(--shadow-card);
+  .estimate-promo-box {
+    margin-top: 1.75rem;
+    padding: 1.25rem;
+    background: var(--color-sage-tint);
+    border-radius: var(--radius-xs);
+    border: 1px solid rgba(27, 77, 54, 0.15);
   }
 
-  .quick-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .quick-title {
-    font-size: 1.4rem;
-    color: var(--color-dark-green);
+  .promo-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary-green);
     margin-bottom: 0.35rem;
   }
 
-  .quick-subtitle {
-    font-size: 0.875rem;
+  .promo-text {
+    font-size: 0.85rem;
     color: var(--color-text-secondary);
-    line-height: 1.55;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .promo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary-green);
+    transition: color var(--transition-fast);
+  }
+
+  .promo-link:hover {
+    color: var(--color-dark-green);
+    text-decoration: underline;
+  }
+
+  .demo-disclosure-box {
+    margin-top: 1.5rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-xs);
+    background: var(--bg-primary);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    line-height: 1.45;
+  }
+
+  .demo-disclosure-box svg {
+    color: var(--color-primary-green);
+    flex-shrink: 0;
   }
 </style>

@@ -20,7 +20,7 @@ const {
     </div>
     <h2 class="quote-title">Tell us about your landscaping project.</h2>
     <p class="quote-subtitle">
-      Share a few details about your outdoor space and what you'd like to achieve. Our principal designers will review your site specifications and prepare a comprehensive proposal.
+      Share a few details about your outdoor space. Our principal designers will review your site specifications and prepare a comprehensive proposal.
     </p>
   </div>
 
@@ -98,7 +98,7 @@ const {
         <!-- Project Location / Postcode -->
         <div class="form-group">
           <label for={`${formId}-loc`} class="form-label">
-            <span>Project Location / Postcode <span class="req" aria-hidden="true">*</span></span>
+            <span>Location / Postcode <span class="req" aria-hidden="true">*</span></span>
           </label>
           <input
             type="text"
@@ -133,11 +133,11 @@ const {
     <!-- Section 2: Scope & Execution Parameters -->
     <fieldset class="form-fieldset">
       <legend class="fieldset-legend">02 &middot; Project Scope &amp; Schedule</legend>
-      <div class="form-grid form-grid-2">
+      <div class="form-grid form-grid-3">
         <!-- Service Required -->
         <div class="form-group">
           <label for={`${formId}-service`} class="form-label">
-            <span>Primary Service Required <span class="req" aria-hidden="true">*</span></span>
+            <span>Service Required <span class="req" aria-hidden="true">*</span></span>
           </label>
           <select
             id={`${formId}-service`}
@@ -145,7 +145,7 @@ const {
             class="form-select"
             required
           >
-            <option value="" disabled selected>Select primary practice...</option>
+            <option value="" disabled selected>Select practice...</option>
             <option value="Landscape Design">Landscape Design &amp; Master Planning</option>
             <option value="Garden Renovation">Garden Design &amp; Renovation</option>
             <option value="Lawn Installation">Lawn Installation &amp; Turf Care</option>
@@ -161,7 +161,7 @@ const {
         <!-- Estimated Budget -->
         <div class="form-group">
           <label for={`${formId}-budget`} class="form-label">
-            <span>Target Budget Allocation</span>
+            <span>Budget Allocation</span>
             <span class="optional">Optional</span>
           </label>
           <select
@@ -169,18 +169,18 @@ const {
             name="budget"
             class="form-select"
           >
-            <option value="" selected>Select approximate investment...</option>
+            <option value="" selected>Approx investment...</option>
             <option value="Under $1,000">Under $1,000</option>
             <option value="$1,000–$5,000">$1,000–$5,000</option>
             <option value="$5,000–$10,000">$5,000–$10,000</option>
             <option value="$10,000–$25,000">$10,000–$25,000</option>
-            <option value="$25,000+">$25,000+ (Master Landscape)</option>
-            <option value="Not sure yet">Not sure yet (Need Consultation)</option>
+            <option value="$25,000+">$25,000+ (Master)</option>
+            <option value="Not sure yet">Not sure yet</option>
           </select>
         </div>
 
         <!-- Timeline -->
-        <div class="form-group col-span-full">
+        <div class="form-group">
           <label for={`${formId}-timeline`} class="form-label">
             <span>Preferred Timeline</span>
             <span class="optional">Optional</span>
@@ -190,12 +190,12 @@ const {
             name="timeline"
             class="form-select"
           >
-            <option value="" selected>Select commencement horizon...</option>
-            <option value="Immediately">Immediately (Active Site / Ready)</option>
+            <option value="" selected>Commencement...</option>
+            <option value="Immediately">Immediately (Ready)</option>
             <option value="Within 1 month">Within 1 month</option>
             <option value="Within 3 months">Within 3 months</option>
             <option value="Within 6 months">Within 6 months</option>
-            <option value="Just exploring">Just exploring (Early Planning)</option>
+            <option value="Just exploring">Just exploring</option>
           </select>
         </div>
       </div>
@@ -212,8 +212,8 @@ const {
           id={`${formId}-desc`}
           name="message"
           class="form-textarea"
-          rows="5"
-          placeholder="Please describe your outdoor space, existing site conditions (e.g. slope, drainage, existing trees), and specific features you envision (e.g. thermal bluestone terrace, perennial flower borders, cedar pergola, automated drip irrigation)."
+          rows="3"
+          placeholder="Briefly describe your outdoor space, existing site conditions (slope, trees, drainage), and key features desired (patio, planting, lawn, lighting)."
           required
         ></textarea>
       </div>
@@ -221,7 +221,7 @@ const {
 
     <!-- Action & Submission Row -->
     <div class="form-submit-stage">
-      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+      <button type="submit" class="btn btn-primary btn-md" style="width: 100%; max-width: 380px;">
         <span>Request My Free Estimate</span>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -242,29 +242,38 @@ const {
   .quote-form-container {
     scroll-margin-top: 6.5rem;
     width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
   }
 
   .quote-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
   }
 
   .quote-title {
-    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
-    margin-bottom: 0.85rem;
-    line-height: 1.18;
+    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+    margin-bottom: 0.65rem;
+    line-height: 1.2;
   }
 
   .quote-subtitle {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     color: var(--color-text-secondary);
-    line-height: 1.68;
-    max-width: 640px;
+    line-height: 1.55;
+    max-width: 580px;
+    margin: 0 auto;
   }
 
   .bespoke-quote-form {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.35rem;
+    padding: clamp(1.25rem, 2.5vw, 1.85rem);
+    background: var(--bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
   }
 
   .form-fieldset {
@@ -273,8 +282,8 @@ const {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    padding-bottom: 1.75rem;
+    gap: 0.9rem;
+    padding-bottom: 1.15rem;
     border-bottom: 1px solid var(--color-border-subtle);
   }
 
@@ -284,30 +293,61 @@ const {
   }
 
   .fieldset-legend {
-    font-size: 0.825rem;
+    font-size: 0.775rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: var(--color-primary-green);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
 
+  .form-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  @media (min-width: 640px) {
+    .form-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .bespoke-quote-form .form-group {
+    gap: 0.35rem;
+  }
+
+  .bespoke-quote-form .form-label {
+    font-size: 0.8rem;
+  }
+
+  .bespoke-quote-form .form-input,
+  .bespoke-quote-form .form-select,
+  .bespoke-quote-form .form-textarea {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.875rem;
+  }
+
+  .bespoke-quote-form .form-textarea {
+    min-height: 80px;
+  }
+
   .form-submit-stage {
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: 0.65rem;
     align-items: center;
-    padding-top: 0.5rem;
+    padding-top: 0.25rem;
   }
 
   .form-disclaimer {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--color-text-muted);
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.45;
   }
 </style>
 

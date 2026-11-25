@@ -1,18 +1,18 @@
 /* ==========================================================================
    MyFormConnect Interactive Booking Widget Stylesheet
-   Themed for Evergreen Landscapes (Seamless Architectural Integration)
+   Themed for Evergreen Landscapes (Compact Architectural Integration)
    ========================================================================== */
 
 :root {
-  --theme-color: #46634E;
-  --theme-hover: #364F3D;
-  --theme-glow: rgba(70, 99, 78, 0.16);
+  --theme-color: #1B4D36;
+  --theme-hover: #143527;
+  --theme-glow: rgba(27, 77, 54, 0.16);
   --theme-btn-text: #FFFFFF;
   --widget-bg: transparent;
   --widget-border: rgba(27, 48, 38, 0.12);
   --widget-radius: 8px;
   --widget-shadow: none;
-  --widget-max-width: 100%;
+  --widget-max-width: 560px;
   --widget-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --widget-text-main: #1B221E;
   --widget-text-body: #58635B;
@@ -33,7 +33,7 @@
   --mfc-booking-border: var(--widget-border);
   --mfc-booking-accent: var(--theme-color);
   --mfc-booking-accent-hover: var(--theme-hover);
-  --mfc-booking-accent-tint: rgba(70, 99, 78, 0.1);
+  --mfc-booking-accent-tint: rgba(27, 77, 54, 0.08);
   --mfc-booking-accent-contrast: #FFFFFF;
   --mfc-booking-danger: #B91C1C;
   --mfc-booking-danger-bg: #FEF2F2;
@@ -68,9 +68,9 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1.5rem;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   border-bottom: 1px solid var(--mfc-booking-border);
 }
 
@@ -78,12 +78,12 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.35rem 0.5rem;
+  gap: 0.2rem 0.35rem;
 }
 
 .mfc-booking-header-heading {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--mfc-booking-heading);
   letter-spacing: -0.01em;
@@ -91,12 +91,12 @@
 
 .mfc-booking-header-label:before {
   content: "•";
-  margin-right: 0.5rem;
+  margin-right: 0.35rem;
   color: var(--mfc-booking-faint);
 }
 
 .mfc-booking-header-label {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: var(--mfc-booking-muted);
 }
 
@@ -104,10 +104,10 @@
   border: 0;
   background: none;
   color: var(--mfc-booking-muted);
-  font-size: 0.825rem;
+  font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
-  padding: 0.25rem 0;
+  padding: 0.2rem 0;
   white-space: nowrap;
   font-family: inherit;
   transition: color 0.15s;
@@ -121,16 +121,16 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 0.5rem 0.75rem;
-  margin-bottom: 1.25rem;
+  gap: 0.35rem;
+  margin-bottom: 0.65rem;
 }
 
 .mfc-booking-calendar-month {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 0.875rem;
   color: var(--mfc-booking-heading);
   justify-self: center;
 }
@@ -138,19 +138,19 @@
 .mfc-booking-calendar-tz {
   grid-column: 1 / -1;
   justify-self: end;
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   color: var(--mfc-booking-faint);
 }
 
 .mfc-booking-calendar-arrow {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 1.85rem;
+  height: 1.85rem;
   border: 1px solid var(--mfc-booking-border);
   border-radius: var(--mfc-booking-radius-sm);
   background: #FFFFFF;
   color: var(--mfc-booking-text);
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1;
   font-family: inherit;
   display: flex;
@@ -175,10 +175,10 @@
 .mfc-booking-calendar-weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 0.35rem;
-  margin-bottom: 0.65rem;
+  gap: 0.2rem;
+  margin-bottom: 0.35rem;
   text-align: center;
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--mfc-booking-muted);
 }
@@ -186,15 +186,15 @@
 .mfc-booking-calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 0.35rem;
+  gap: 0.2rem;
 }
 
 .mfc-booking-calendar-status {
   grid-column: 1 / -1;
-  margin: 0.5rem 0 0;
-  padding: 1.25rem;
+  margin: 0.4rem 0 0;
+  padding: 0.75rem;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--mfc-booking-muted);
   background: #F8F9F5;
   border-radius: var(--mfc-booking-radius-sm);
@@ -207,11 +207,11 @@
 
 .mfc-booking-day {
   aspect-ratio: 1;
-  min-height: 2.4rem;
+  min-height: 1.75rem;
   border: 0;
   border-radius: var(--mfc-booking-radius-sm);
   background: transparent;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: var(--mfc-booking-heading);
   cursor: pointer;
   font-family: inherit;
@@ -238,15 +238,15 @@
   background: var(--mfc-booking-accent) !important;
   color: #FFFFFF !important;
   font-weight: 600;
-  box-shadow: 0 2px 8px var(--theme-glow);
+  box-shadow: 0 2px 6px var(--theme-glow);
 }
 
 .mfc-booking-times-heading {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0 0 1rem;
-  font-size: 1rem;
+  gap: 0.35rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--mfc-booking-heading);
 }
@@ -254,15 +254,15 @@
 .mfc-booking-times-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.65rem;
+  gap: 0.35rem;
 }
 
 .mfc-booking-slot {
   border: 1px solid var(--mfc-booking-border);
   border-radius: var(--mfc-booking-radius-sm);
   background: #FFFFFF;
-  padding: 0.75rem 0.5rem;
-  font-size: 0.85rem;
+  padding: 0.4rem 0.25rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--mfc-booking-heading);
   cursor: pointer;
@@ -287,21 +287,21 @@
 .mfc-booking-footer {
   display: flex;
   justify-content: flex-end;
-  margin-top: 1.5rem;
-  padding-top: 1.25rem;
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
   border-top: 1px solid var(--mfc-booking-border);
 }
 
 .mfc-booking-footer-split {
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
 .mfc-booking-footer-selected {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--mfc-booking-muted);
 }
 
@@ -309,13 +309,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   border: 0;
   border-radius: var(--mfc-booking-radius-pill);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 0.75rem 1.4rem;
+  padding: 0.45rem 1rem;
   transition: all 0.18s ease;
   font-family: inherit;
 }
@@ -328,7 +328,7 @@
 .mfc-booking-btn-primary {
   background: var(--mfc-booking-accent);
   color: var(--mfc-booking-accent-contrast);
-  box-shadow: 0 3px 10px var(--theme-glow);
+  box-shadow: 0 2px 8px var(--theme-glow);
 }
 
 .mfc-booking-btn-primary:hover:not(:disabled) {
@@ -349,31 +349,31 @@
 
 .mfc-booking-btn-full {
   width: 100%;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .mfc-booking-summary {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 1.15rem;
-  margin-bottom: 1.25rem;
-  border: 1px solid rgba(70, 99, 78, 0.25);
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(27, 77, 54, 0.2);
   border-radius: var(--mfc-booking-radius-sm);
   background: #F8F9F5;
 }
 
 .mfc-booking-summary-datetime {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.2rem;
   font-weight: 700;
   color: var(--mfc-booking-heading);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 
 .mfc-booking-summary-description {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--mfc-booking-muted);
 }
 
@@ -381,7 +381,7 @@
   border: 0;
   background: none;
   color: var(--mfc-booking-accent);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
@@ -394,13 +394,13 @@
 
 .mfc-booking-field {
   display: block;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.75rem;
 }
 
 .mfc-booking-field-label {
   display: block;
-  margin-bottom: 0.4rem;
-  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--mfc-booking-heading);
 }
@@ -419,8 +419,8 @@
   width: 100%;
   border: 1px solid var(--input-border);
   border-radius: var(--input-radius);
-  padding: 0.75rem 0.9rem;
-  font-size: 0.925rem;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.825rem;
   color: var(--mfc-booking-heading);
   background: var(--input-bg);
   font-family: inherit;
@@ -428,11 +428,11 @@
 }
 
 .mfc-booking-field-input-plain {
-  padding-left: 0.9rem;
+  padding-left: 0.65rem;
 }
 
 .mfc-booking-field-textarea {
-  min-height: 5.5rem;
+  min-height: 3.75rem;
   resize: vertical;
 }
 
@@ -441,51 +441,71 @@
   outline: none;
   border-color: #2563EB;
   background: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
 }
 
 .mfc-booking-form-error {
-  margin: 0 0 1rem;
-  padding: 0.85rem 1rem;
+  margin: 0 0 0.75rem;
+  padding: 0.65rem 0.85rem;
   border-radius: var(--mfc-booking-radius-sm);
   background: var(--mfc-booking-danger-bg);
   border: 1px solid var(--mfc-booking-danger-border);
   color: var(--mfc-booking-danger);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 }
 
-.mfc-booking-success {
-  text-align: center;
-  padding: 1.5rem 0.5rem;
-}
-
-.mfc-booking-success-icon {
-  font-size: 3rem;
+.mfc-booking-complete-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--mfc-booking-success-bg);
   color: var(--mfc-booking-success);
-  margin-bottom: 0.75rem;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+  font-size: 1.35rem;
 }
 
-.mfc-booking-success-title {
-  margin: 0 0 0.5rem;
-  font-size: 1.4rem;
-  font-weight: 700;
+.mfc-booking-complete-title {
+  font-size: 1.15rem;
   color: var(--mfc-booking-heading);
+  margin-bottom: 0.35rem;
 }
 
-.mfc-booking-success-message {
-  margin: 0 0 1.5rem;
-  font-size: 0.925rem;
-  line-height: 1.6;
+.mfc-booking-complete-desc {
+  font-size: 0.8rem;
   color: var(--mfc-booking-muted);
 }
 
+/* ==========================================================================
+   Powered by MyFormConnect Attribution Styling
+   ========================================================================== */
 .mfc-booking-powered {
-  display: none !important; /* Managed via standardized FormAttribution */
+  margin-top: 1.15rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border-subtle, rgba(27, 48, 38, 0.08));
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted, #76847A);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
 }
 
-@media (max-width: 640px) {
-  .mfc-booking-times-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.mfc-booking-powered-brand {
+  color: var(--color-primary-green, #1B4D36);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(27, 77, 54, 0.35);
+  transition: all 0.18s ease;
+}
+
+.mfc-booking-powered-brand:hover {
+  color: var(--color-gold, #C5A059);
+  text-decoration-color: var(--color-gold, #C5A059);
 }
