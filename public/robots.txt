@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://evergreenlandscapes.example/sitemap.xml
+Sitemap: https://evergreenlandscapers.vercel.app/sitemap.xml

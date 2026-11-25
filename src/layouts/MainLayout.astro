@@ -15,13 +15,17 @@ interface Props {
 const {
   title = "Evergreen Landscapes | Thoughtful Landscapes. Beautiful Outdoor Living.",
   description = "Modern residential and commercial landscaping, garden renovation, lawn installation, patios, and outdoor living spaces. Free detailed estimates.",
-  canonical = Astro.url.href,
+  canonical,
   ogImage = "/images/hero_image.jpeg",
   activePath = Astro.url.pathname,
 } = Astro.props;
 
-const siteUrl = Astro.site ? Astro.site.toString() : 'https://evergreenlandscapes.example';
-const fullOgImageUrl = new URL(ogImage, siteUrl).toString();
+const siteUrl = 'https://evergreenlandscapers.vercel.app';
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const canonicalUrl = canonical || (currentPath === '/' ? `${siteUrl}/` : `${siteUrl}${currentPath}`);
+const fullOgImageUrl = ogImage.startsWith('http')
+  ? ogImage
+  : `${siteUrl}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
 
 // Fictional LocalBusiness structured data
 const structuredData = {
@@ -32,6 +36,7 @@ const structuredData = {
   "url": siteUrl,
   "telephone": COMPANY_INFO.phone,
   "email": COMPANY_INFO.email,
+  "image": fullOgImageUrl,
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "428 Timberland Way",
@@ -64,7 +69,7 @@ const structuredData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonical} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- SEO Meta Tags -->
     <title>{title}</title>
@@ -73,17 +78,22 @@ const structuredData = {
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Evergreen Landscapes" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={fullOgImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullOgImageUrl} />
+    <meta name="twitter:image:alt" content={title} />
 
     <!-- Google Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
