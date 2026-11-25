@@ -1,0 +1,102 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { COMPANY_INFO } from '../config/forms';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  activePath?: string;
+}
+
+const {
+  title = "Evergreen Landscapes | Thoughtful Landscapes. Beautiful Outdoor Living.",
+  description = "Modern residential and commercial landscaping, garden renovation, lawn installation, patios, and outdoor living spaces. Free detailed estimates.",
+  canonical = Astro.url.href,
+  ogImage = "/images/hero_image.jpeg",
+  activePath = Astro.url.pathname,
+} = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.toString() : 'https://evergreenlandscapes.example';
+const fullOgImageUrl = new URL(ogImage, siteUrl).toString();
+
+// Fictional LocalBusiness structured data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "LandscapeService",
+  "name": COMPANY_INFO.name,
+  "description": COMPANY_INFO.proposition,
+  "url": siteUrl,
+  "telephone": COMPANY_INFO.phone,
+  "email": COMPANY_INFO.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "428 Timberland Way",
+    "addressLocality": "Green Hills",
+    "addressRegion": "OR",
+    "postalCode": "97201",
+    "addressCountry": "US"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday"],
+      "opens": "09:00",
+      "closes": "14:00"
+    }
+  ],
+  "priceRange": "$$"
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImageUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImageUrl} />
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <Header activePath={activePath} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

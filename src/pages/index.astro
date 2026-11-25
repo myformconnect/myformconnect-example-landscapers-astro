@@ -1,0 +1,736 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CTASection from '../components/CTASection.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
+import { COMPANY_INFO } from '../config/forms';
+
+const services = [
+  {
+    num: "01",
+    title: "Landscape Design & Planning",
+    description: "Holistic architectural master planning, topographical analysis, 3D spatial modeling, and microclimate botanical selection tailored to your grounds.",
+    imageSrc: "/images/landscape_design_and_planning.webp",
+    benefits: ["Site topography & sun-path analysis", "3D architectural visualization & blueprints", "Native plant palettes & ecological zoning"],
+    href: "/services#landscape-design",
+  },
+  {
+    num: "02",
+    title: "Garden Design & Renovation",
+    description: "Rejuvenating tired grounds into layered, multi-season sanctuaries. We restore soil biome, establish architectural borders, and introduce structural shrubs.",
+    imageSrc: "/images/garden_design_and_renovation.jpeg",
+    benefits: ["Complete backyard grading & renewal", "Tiered perennial borders & drifts", "Organic soil rejuvenation & weed barriers"],
+    href: "/services#garden-renovation",
+  },
+  {
+    num: "03",
+    title: "Lawn Installation & Turf Care",
+    description: "Velvety, enduring turf established through laser grading, subterranean aeration, and certified climate-resilient sod blends engineered for longevity.",
+    imageSrc: "/images/lawn_installation_and_turf.jpeg",
+    benefits: ["Precision laser grading & sub-base prep", "Certified regional fescue & bluegrass sod", "Sub-surface irrigation & drainage mapping"],
+    href: "/services#lawn-installation",
+  },
+  {
+    num: "04",
+    title: "Outdoor Living & Patio Design",
+    description: "Seamless transitions between home interior and open air. Custom quarried bluestone terraces, gas fire features, sheltered pergolas, and outdoor kitchens.",
+    imageSrc: "/images/outdoor_living_patio_design.jpg",
+    benefits: ["Natural thermal bluestone & flagstone", "Built-in fire tables, hearths & outdoor kitchens", "Integrated cedar pergolas & low-voltage brass light"],
+    href: "/services#outdoor-living",
+  },
+  {
+    num: "05",
+    title: "Planting & Tree Installation",
+    description: "Specimen canopy shade trees, mature evergreen privacy screens, and flowering botanical collections sourced directly from premier regional nurseries.",
+    imageSrc: "/images/planting_tree_installation.jpeg",
+    benefits: ["Mature tree transport & root ball planting", "Dense evergreen privacy hedges (Laurel, Cedar)", "Pollinator corridors & seasonal flower rotations"],
+    href: "/services#tree-planting",
+  },
+  {
+    num: "06",
+    title: "Commercial Landscaping",
+    description: "Commanding corporate headquarters, upscale multi-tenant plazas, and commercial entrance grounds engineered for impact and low-water maintenance.",
+    imageSrc: "/images/Commercial_Landscaping.jpeg",
+    benefits: ["Architectural commercial street frontage", "Drought-resilient gravel & ornamental grass design", "Structured maintenance & seasonal audits"],
+    href: "/services#commercial-landscaping",
+  },
+];
+
+const featuredProjects = [
+  {
+    num: "01",
+    title: "Modern Residential Garden",
+    category: "Residential Gardens",
+    description: "A tranquil balance of formal hornbeam hedges, geometric bluestone terraces, and organic perennial drifts opening to native woodland.",
+    imageSrc: "/images/modern_residential_garden.jpeg",
+    scope: ["Master Landscape Design", "Bluestone Patio", "Specimen Trees"],
+  },
+  {
+    num: "02",
+    title: "Contemporary Outdoor Patio",
+    category: "Modern Patios",
+    description: "Minimalist outdoor living terrace featuring large-format slate pavers, custom cedar privacy screening, and an artisan gas fire bowl.",
+    imageSrc: "/images/contemporary_outdoor_patio.jpeg",
+    scope: ["Outdoor Living", "Fire Feature", "Precision Paving"],
+  },
+  {
+    num: "03",
+    title: "Lush Backyard Transformation",
+    category: "Lawn Transformations",
+    description: "A steep, eroded hillside reinvented with dry-stacked fieldstone terraces, a laser-graded family play lawn, and hidden drainage.",
+    imageSrc: "/images/lush_backyard_transformation.jpeg",
+    scope: ["Retaining Terraces", "Turf Installation", "Subsurface Drainage"],
+  },
+  {
+    num: "04",
+    title: "Commercial Green Space",
+    category: "Commercial Landscapes",
+    description: "Corporate courtyard blending gravel collaboration paths, drought-tolerant prairie grasses, and architectural steel planters.",
+    imageSrc: "/images/commercial_green_space.jpeg",
+    scope: ["Corporate Grounds", "Water-Wise Drip", "Steel Planters"],
+  },
+];
+
+const steps = [
+  {
+    num: "01",
+    title: "Tell Us About Your Project",
+    desc: "Submit your requirements, timeline, and property location using our structured online estimate form.",
+  },
+  {
+    num: "02",
+    title: "Schedule a Site Consultation",
+    desc: "Reserve a dedicated 30-minute consultation slot on our live calendar to walk your grounds with our specialists.",
+  },
+  {
+    num: "03",
+    title: "Receive Your Custom Proposal",
+    desc: "Review a comprehensive architectural scope, transparent material schedule, and phased construction timeline.",
+  },
+  {
+    num: "04",
+    title: "Watch Your Outdoor Space Transform",
+    desc: "Our master crews execute grading, stonework, and botanical installations with meticulous craftsmanship and tidy care.",
+  },
+];
+---
+
+<MainLayout
+  title="Evergreen Landscapes | Thoughtful Landscapes. Beautiful Outdoor Living."
+  description="Transform your outdoor space with Evergreen Landscapes. Specializing in master garden architecture, bluestone patios, lawn installations, and commercial grounds."
+  activePath="/"
+>
+  <!-- Section 1: Hero -->
+  <Hero />
+
+  <!-- Section 2: Introduction (Editorial Split Layout) -->
+  <section class="intro-section section-padding">
+    <div class="container">
+      <div class="intro-layout">
+        <!-- Visual Column -->
+        <div class="intro-media-col">
+          <div class="intro-main-image-wrap">
+            <img
+              src="/images/pacific_northwest_crafts.jpeg"
+              alt="Architectural garden design with sculpted greenery and natural stone paving"
+              class="intro-main-img"
+              loading="lazy"
+              width="740"
+              height="520"
+            />
+            <div class="intro-stamp">
+              <span class="stamp-year">EST. 2011</span>
+              <span class="stamp-sub">Pacific Northwest Crafts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Narrative Column -->
+        <div class="intro-copy-col">
+          <div class="eyebrow">
+            <span>Design Philosophy</span>
+          </div>
+
+          <h2 class="intro-heading">
+            More than landscaping. <span class="serif-italic">A better way to experience outdoors.</span>
+          </h2>
+
+          <blockquote class="intro-quote">
+            "We view the land not as a blank canvas to be decorated, but as living architecture that should deepen in character with every passing season."
+          </blockquote>
+
+          <p class="intro-text">
+            Evergreen Landscapes bridges the natural ecology of the Pacific Northwest with timeless architectural principles. Whether orchestrating a comprehensive residential master plan, laying natural thermal bluestone, or introducing specimen hornbeams, we create spaces that invite daily living into the open air.
+          </p>
+
+          <div class="intro-pillars-grid">
+            <div class="pillar-box">
+              <span class="pillar-metric">15+</span>
+              <span class="pillar-label">Years of Regional Experience</span>
+            </div>
+            <div class="pillar-box">
+              <span class="pillar-metric">140+</span>
+              <span class="pillar-label">Landscape Commissions Delivered</span>
+            </div>
+            <div class="pillar-box">
+              <span class="pillar-metric">100%</span>
+              <span class="pillar-label">Native & Microclimate Curated</span>
+            </div>
+          </div>
+
+          <div class="intro-action-row">
+            <a href="/services" class="btn btn-secondary">
+              <span>View All Practice Disciplines</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="/contact#quote" class="btn btn-primary">
+              <span>Request Project Proposal</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Primary Services -->
+  <section class="services-section section-padding" style="background-color: var(--bg-secondary);">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Our Practice Disciplines"
+        title="Comprehensive Landscaping Services"
+        subtitle="From architectural master planning and stonework to laser-graded lawns and mature specimen plantings."
+      />
+
+      <div class="services-editorial-grid">
+        {services.map((svc) => (
+          <ServiceCard
+            num={svc.num}
+            title={svc.title}
+            description={svc.description}
+            imageSrc={svc.imageSrc}
+            benefits={svc.benefits}
+            href={svc.href}
+          />
+        ))}
+      </div>
+
+      <div class="services-bottom-card">
+        <div class="bottom-card-copy">
+          <h4>Custom Multi-Discipline Commissions</h4>
+          <p>Most of our projects integrate landscape design, stone terrace installation, automated irrigation, and horticultural planting into a cohesive, single-contract delivery.</p>
+        </div>
+        <div class="bottom-card-action">
+          <a href="/services" class="btn btn-primary">
+            <span>Explore Complete Services</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Featured Projects -->
+  <section class="projects-section section-padding">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Curated Portfolio"
+        title="Spaces we've brought to life."
+        subtitle="An illustrative selection of residential estates, contemporary outdoor patios, and commercial green spaces."
+      />
+
+      <div class="projects-editorial-grid">
+        {featuredProjects.map((proj) => (
+          <ProjectCard
+            num={proj.num}
+            title={proj.title}
+            category={proj.category}
+            description={proj.description}
+            imageSrc={proj.imageSrc}
+            scope={proj.scope}
+          />
+        ))}
+      </div>
+
+      <div class="projects-cta-row">
+        <a href="/projects" class="btn btn-primary btn-lg">
+          <span>Explore All 8 Portfolio Projects</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Why Choose Us (Architectural Manifesto) -->
+  <section class="manifesto-section section-padding" style="background-color: var(--color-dark-green); color: #FFFFFF;">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Craft Standards"
+        title="Thoughtful design. Quality work. Lasting beauty."
+        subtitle="We build landscapes with the rigor of architectural construction and the sensitivity of master horticulturalists."
+        light={true}
+      />
+
+      <div class="manifesto-grid">
+        <!-- Pillar 1 -->
+        <div class="manifesto-col">
+          <span class="manifesto-num">01</span>
+          <h3 class="manifesto-title">Personalized Design & Site Harmony</h3>
+          <p class="manifesto-desc">
+            No two sites share identical soil, slope, or microclimate. We tailor every blueprint to the exact contours of your land, ensuring seamless indoor-outdoor sightlines and natural privacy.
+          </p>
+          <ul class="manifesto-list">
+            <li>Topographical elevation & drainage studies</li>
+            <li>Customized sunlight & shadow mapping</li>
+            <li>Architectural style integration with your residence</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="manifesto-col">
+          <span class="manifesto-num">02</span>
+          <h3 class="manifesto-title">Enduring Materials & Quality Plants</h3>
+          <p class="manifesto-desc">
+            We reject fragile shortcuts. We build using hand-selected quarry bluestone, dry-stacked basalt, sustainably harvested cedar, and acclimatized nursery flora chosen to flourish decades ahead.
+          </p>
+          <ul class="manifesto-list">
+            <li>Direct quarry sourcing for natural stonework</li>
+            <li>Premium disease-resistant sod & perennial cultivars</li>
+            <li>Structural subterranean drainage & weed defense</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="manifesto-col">
+          <span class="manifesto-num">03</span>
+          <h3 class="manifesto-title">Single-Point Accountability & Technology</h3>
+          <p class="manifesto-desc">
+            From design to construction, you collaborate with one dedicated team. Our integration with MyFormConnect guarantees seamless proposal requests, live scheduling, and rapid enquiry response.
+          </p>
+          <ul class="manifesto-list">
+            <li>Transparent line-item material proposals</li>
+            <li>Direct online booking for 30-minute site walk-throughs</li>
+            <li>Dedicated on-site construction superintendents</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Reviews Section -->
+  <ReviewsSection />
+
+  <!-- Section 6: How It Works -->
+  <section class="process-section section-padding">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Commission Pathway"
+        title="From the first idea to the finished landscape."
+        subtitle="A clear, collaborative four-step journey designed for predictability and craftsmanship."
+      />
+
+      <div class="process-timeline-grid">
+        {steps.map((st) => (
+          <div class="timeline-card">
+            <span class="timeline-step-num">{st.num}</span>
+            <h3 class="timeline-title">{st.title}</h3>
+            <p class="timeline-desc">{st.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Process Interactive Prompt -->
+      <div class="process-banner">
+        <div class="banner-copy">
+          <h4>Prefer to walk your grounds with an expert first?</h4>
+          <p>Book a dedicated 30-minute consultation directly into our field calendar.</p>
+        </div>
+        <div class="banner-action">
+          <a href="/contact#booking" class="btn btn-secondary">
+            <span>Schedule Site Consultation</span>
+          </a>
+          <a href="/contact#quote" class="btn btn-primary">
+            <span>Request Free Estimate</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7 & 8: Conversion Section -->
+  <CTASection
+    title="Ready to transform your outdoor space?"
+    subtitle="Tell us about your garden, landscape, or outdoor living project. We'll help you plan the next steps with a tailored estimate."
+    primaryCtaText="Get Your Free Estimate"
+    primaryCtaHref="/contact#quote"
+    secondaryCtaText="Talk to Our Team"
+    secondaryCtaHref="/contact"
+    variant="green"
+  />
+</MainLayout>
+
+<style>
+  /* Intro Section */
+  .intro-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 6vw, 5.5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 992px) {
+    .intro-layout {
+      grid-template-columns: 1fr 1.15fr;
+    }
+  }
+
+  .intro-main-image-wrap {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-hover);
+    aspect-ratio: 4 / 3.2;
+    border: 1px solid var(--color-border);
+  }
+
+  .intro-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .intro-stamp {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background-color: var(--color-dark-green);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-dark);
+  }
+
+  .stamp-year {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--color-sage);
+    line-height: 1.1;
+  }
+
+  .stamp-sub {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .intro-copy-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+
+  .intro-heading {
+    font-size: clamp(2.2rem, 3.8vw, 3.1rem);
+    line-height: 1.15;
+  }
+
+  .intro-quote {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--color-primary-green);
+    line-height: 1.6;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--color-primary-green);
+    margin: 0.25rem 0;
+  }
+
+  .intro-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  .intro-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 580px) {
+    .intro-pillars-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .pillar-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .pillar-metric {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    color: var(--color-dark-green);
+    line-height: 1;
+    font-style: italic;
+  }
+
+  .pillar-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  .intro-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Services Grid */
+  .services-editorial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .services-editorial-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services-editorial-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .services-bottom-card {
+    margin-top: 3.5rem;
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-card);
+  }
+
+  @media (min-width: 768px) {
+    .services-bottom-card {
+      flex-direction: row;
+    }
+  }
+
+  .bottom-card-copy h4 {
+    color: var(--color-dark-green);
+    font-size: 1.2rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .bottom-card-copy p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    max-width: 620px;
+  }
+
+  /* Projects Grid */
+  .projects-editorial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .projects-editorial-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .projects-cta-row {
+    margin-top: 3.5rem;
+    text-align: center;
+  }
+
+  /* Manifesto Section */
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .manifesto-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .manifesto-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .manifesto-num {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    line-height: 1;
+    color: var(--color-sage);
+    font-style: italic;
+  }
+
+  .manifesto-title {
+    font-size: 1.35rem;
+    color: #FFFFFF;
+    line-height: 1.25;
+  }
+
+  .manifesto-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.65;
+  }
+
+  .manifesto-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-top: 0.5rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .manifesto-list li {
+    font-size: 0.825rem;
+    color: var(--color-sage-light);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .manifesto-list li::before {
+    content: "—";
+    color: var(--color-sage);
+  }
+
+  /* Process Section */
+  .process-timeline-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .process-timeline-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .process-timeline-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .timeline-card {
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 2.25rem 1.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform var(--transition-smooth), border-color var(--transition-smooth);
+  }
+
+  .timeline-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary-green);
+  }
+
+  .timeline-step-num {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    color: var(--color-primary-green);
+    font-style: italic;
+    line-height: 1;
+  }
+
+  .timeline-title {
+    font-size: 1.2rem;
+    color: var(--color-dark-green);
+    line-height: 1.25;
+  }
+
+  .timeline-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .process-banner {
+    margin-top: 3.5rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 768px) {
+    .process-banner {
+      flex-direction: row;
+    }
+  }
+
+  .banner-copy h4 {
+    color: var(--color-dark-green);
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .banner-copy p {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  .banner-action {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+</style>

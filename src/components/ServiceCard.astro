@@ -1,0 +1,237 @@
+---
+interface Props {
+  id?: string;
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt?: string;
+  benefits?: string[];
+  href?: string;
+  ctaText?: string;
+  num?: string;
+}
+
+const {
+  id,
+  title,
+  description,
+  imageSrc,
+  imageAlt = title,
+  benefits = [],
+  href = "/services",
+  ctaText = "Explore Discipline",
+  num = "01",
+} = Astro.props;
+---
+
+<article class="editorial-service-card" id={id}>
+  <div class="card-image-stage">
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      class="card-img"
+      loading="lazy"
+      width="640"
+      height="440"
+    />
+    <div class="card-num-stamp" aria-hidden="true">{num}</div>
+  </div>
+
+  <div class="card-content-stage">
+    <div class="card-meta-line">
+      <span class="card-discipline">Discipline {num}</span>
+      <span class="card-status">Commission Ready</span>
+    </div>
+
+    <h3 class="card-title">{title}</h3>
+    <p class="card-desc">{description}</p>
+
+    {benefits && benefits.length > 0 && (
+      <ul class="card-scope-list">
+        {benefits.map((b) => (
+          <li>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <div class="card-action-bar">
+      <a href={href} class="link-editorial">
+        <span>{ctaText}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <a href="/contact#quote" class="link-quick-quote" title="Request an estimate for this service">
+        <span>Estimate</span>
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .editorial-service-card {
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .editorial-service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(27, 77, 54, 0.4);
+  }
+
+  .card-image-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10.5;
+    overflow: hidden;
+    background-color: var(--color-deep-forest);
+  }
+
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .editorial-service-card:hover .card-img {
+    transform: scale(1.05);
+  }
+
+  .card-num-stamp {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(11, 32, 23, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    font-style: italic;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--color-gold-border);
+  }
+
+  .card-content-stage {
+    padding: clamp(1.4rem, 3vw, 1.95rem);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 0.85rem;
+  }
+
+  .card-meta-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+  }
+
+  .card-discipline {
+    color: var(--color-primary-green);
+  }
+
+  .card-status {
+    color: var(--color-gold);
+  }
+
+  .card-title {
+    font-size: 1.38rem;
+    color: var(--color-dark-green);
+    line-height: 1.22;
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    line-height: 1.68;
+    color: var(--color-text-secondary);
+  }
+
+  .card-scope-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding-top: 0.85rem;
+    margin-top: 0.25rem;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .card-scope-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.825rem;
+    color: var(--color-text);
+    line-height: 1.45;
+  }
+
+  .card-scope-list svg {
+    color: var(--color-primary-green);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .card-action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .link-editorial {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary-green);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .link-editorial:hover {
+    color: var(--color-primary-hover);
+    transform: translateX(3px);
+  }
+
+  .link-quick-quote {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    padding: 0.35rem 0.8rem;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-xs);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: all var(--transition-fast);
+  }
+
+  .link-quick-quote:hover {
+    background-color: var(--color-primary-green);
+    color: #FFFFFF;
+  }
+</style>

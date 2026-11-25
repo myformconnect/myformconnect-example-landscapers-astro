@@ -1,0 +1,310 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import BookingWidget from '../components/BookingWidget.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { COMPANY_INFO } from '../config/forms';
+---
+
+<MainLayout
+  title="Contact & Commission Inquiries | Evergreen Landscapes"
+  description="Request a formal landscape estimate, schedule an on-site design consultation, or reach our studio directly."
+  activePath="/contact"
+>
+  <!-- Section 1: Page Hero -->
+  <section class="contact-hero-section section-padding-sm" style="background: linear-gradient(165deg, var(--color-deep-forest) 0%, var(--color-dark-green) 50%, #143527 100%); color: #FFFFFF;">
+    <div class="container text-center">
+      <div class="contact-hero-inner">
+        <span class="eyebrow eyebrow-light text-gold">Client Engagement</span>
+        <h1 class="contact-hero-title">Let's bring your landscape vision to life.</h1>
+        <p class="contact-hero-subtitle">
+          Whether you are planning a master estate transformation, installing a pristine new lawn, or crafting an outdoor dining terrace, we invite your project details below.
+        </p>
+        <div class="contact-hero-actions">
+          <a href="#quote" class="btn btn-gold btn-lg">
+            <span>Request a Free Estimate</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#booking" class="btn btn-outline-white btn-lg">
+            <span>Book a Site Consultation</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Conversion Container -->
+  <section class="contact-main-section section-padding">
+    <div class="container">
+      <div class="contact-layout">
+        <!-- Main Forms Column (Quote Form & Booking Widget) -->
+        <div class="forms-column">
+          <!-- Section 2: Project Quote Form -->
+          <div class="form-block">
+            <QuoteForm />
+          </div>
+
+          <!-- Section 3: Smart Scheduling Booking Widget -->
+          <div class="form-block">
+            <BookingWidget />
+          </div>
+        </div>
+
+        <!-- Sidebar Column (Studio Info & Quick Question Form) -->
+        <aside class="sidebar-column">
+          <!-- Section 5: Business Information Card -->
+          <div class="studio-info-card">
+            <span class="eyebrow">Studio Coordinates</span>
+            <h3 class="info-card-title">Evergreen Landscapes</h3>
+            <p class="info-card-desc">
+              Connect directly with our master horticulturalists, project estimators, and site superintendents.
+            </p>
+
+            <div class="info-items-list">
+              <!-- Phone -->
+              <div class="info-item-row">
+                <div class="info-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <span class="label">Direct Line</span>
+                  <a href={`tel:${COMPANY_INFO.phone}`} class="value">{COMPANY_INFO.phone}</a>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="info-item-row">
+                <div class="info-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <span class="label">Estimates Desk</span>
+                  <a href={`mailto:${COMPANY_INFO.email}`} class="value">{COMPANY_INFO.email}</a>
+                </div>
+              </div>
+
+              <!-- Address -->
+              <div class="info-item-row">
+                <div class="info-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <span class="label">Studio &amp; Yard</span>
+                  <span class="value">{COMPANY_INFO.address}</span>
+                </div>
+              </div>
+
+              <!-- Hours -->
+              <div class="info-item-row">
+                <div class="info-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <span class="label">Operating Hours</span>
+                  <span class="value">{COMPANY_INFO.hours}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: General Contact Form (Quick Question) -->
+          <div class="quick-inquiry-card" id="quick-contact">
+            <div class="quick-header">
+              <span class="eyebrow">Direct Message</span>
+              <h3 class="quick-title">Have a quick question?</h3>
+              <p class="quick-subtitle">
+                Not ready for a full project estimate? Send us a message and our team will get back to you shortly.
+              </p>
+            </div>
+            <ContactForm formId="sidebar-contact-form" />
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .contact-hero-section {
+    text-align: center;
+    padding-top: clamp(4rem, 7vw, 6rem);
+    padding-bottom: clamp(4rem, 7vw, 6rem);
+  }
+
+  .contact-hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-hero-title {
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 1.25rem;
+    width: 100%;
+  }
+
+  .contact-hero-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    max-width: 680px;
+    margin: 0 auto 2.25rem;
+    line-height: 1.65;
+    text-align: center;
+  }
+
+  .contact-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  /* Two-column layout */
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 6vw, 4.5rem);
+    align-items: flex-start;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-layout {
+      grid-template-columns: 1.55fr 1fr;
+    }
+  }
+
+  .forms-column {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3.5rem, 6vw, 5rem);
+  }
+
+  .form-block {
+    width: 100%;
+  }
+
+  /* Sidebar */
+  .sidebar-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: sticky;
+    top: 6rem;
+  }
+
+  .studio-info-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: clamp(1.75rem, 3.5vw, 2.5rem);
+    box-shadow: var(--shadow-card);
+  }
+
+  .info-card-title {
+    font-size: 1.5rem;
+    color: var(--color-dark-green);
+    margin-bottom: 0.4rem;
+  }
+
+  .info-card-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .info-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .info-item-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .info-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-xs);
+    background-color: var(--color-sage-tint);
+    color: var(--color-primary-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .info-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-text .label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+
+  .info-text .value {
+    font-size: 0.925rem;
+    font-weight: 500;
+    color: var(--color-dark-green);
+    line-height: 1.4;
+  }
+
+  .info-text a.value:hover {
+    color: var(--color-primary-green);
+    text-decoration: underline;
+  }
+
+  .quick-inquiry-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: clamp(1.75rem, 3.5vw, 2.5rem);
+    box-shadow: var(--shadow-card);
+  }
+
+  .quick-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .quick-title {
+    font-size: 1.4rem;
+    color: var(--color-dark-green);
+    margin-bottom: 0.35rem;
+  }
+
+  .quick-subtitle {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+  }
+</style>

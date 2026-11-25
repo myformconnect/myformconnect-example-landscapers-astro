@@ -1,0 +1,323 @@
+---
+import { FORM_URLS } from '../config/forms';
+import FormAttribution from './FormAttribution.astro';
+
+interface Props {
+  actionUrl?: string;
+  formId?: string;
+}
+
+const {
+  actionUrl = FORM_URLS.enquiry,
+  formId = "project-quote-form",
+} = Astro.props;
+---
+
+<div class="quote-form-container" id="quote">
+  <div class="quote-header">
+    <div class="eyebrow">
+      <span>Project Estimation Protocol</span>
+    </div>
+    <h2 class="quote-title">Tell us about your landscaping project.</h2>
+    <p class="quote-subtitle">
+      Share a few details about your outdoor space and what you'd like to achieve. Our principal designers will review your site specifications and prepare a comprehensive proposal.
+    </p>
+  </div>
+
+  <form
+    id={formId}
+    action={actionUrl}
+    method="POST"
+    class="form-card bespoke-quote-form"
+    novalidate
+  >
+    <!-- Rule 6: Honeypot spam defense -->
+    <input
+      type="text"
+      name="_gotcha"
+      style="display:none;"
+      tabindex="-1"
+      autocomplete="off"
+    />
+
+    <!-- Dynamic Status Message Container -->
+    <div class="form-status-message" role="alert" aria-live="polite"></div>
+
+    <!-- Section 1: Client & Site Coordinates -->
+    <fieldset class="form-fieldset">
+      <legend class="fieldset-legend">01 &middot; Contact &amp; Property Information</legend>
+      <div class="form-grid form-grid-2">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for={`${formId}-name`} class="form-label">
+            <span>Full Name <span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <input
+            type="text"
+            id={`${formId}-name`}
+            name="name"
+            class="form-input"
+            placeholder="e.g. Eleanor Vance"
+            required
+            autocomplete="name"
+          />
+        </div>
+
+        <!-- Email Address -->
+        <div class="form-group">
+          <label for={`${formId}-email`} class="form-label">
+            <span>Email Address <span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <input
+            type="email"
+            id={`${formId}-email`}
+            name="email"
+            class="form-input"
+            placeholder="e.g. eleanor@vancestudio.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-group">
+          <label for={`${formId}-phone`} class="form-label">
+            <span>Phone Number <span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <input
+            type="tel"
+            id={`${formId}-phone`}
+            name="phone"
+            class="form-input"
+            placeholder="e.g. (503) 890-1234"
+            required
+            autocomplete="tel"
+          />
+        </div>
+
+        <!-- Project Location / Postcode -->
+        <div class="form-group">
+          <label for={`${formId}-loc`} class="form-label">
+            <span>Project Location / Postcode <span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <input
+            type="text"
+            id={`${formId}-loc`}
+            name="project_location"
+            class="form-input"
+            placeholder="e.g. Lake Oswego, OR 97034"
+            required
+          />
+        </div>
+
+        <!-- Property Type -->
+        <div class="form-group col-span-full">
+          <label for={`${formId}-prop-type`} class="form-label">
+            <span>Property Type <span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <select
+            id={`${formId}-prop-type`}
+            name="property_type"
+            class="form-select"
+            required
+          >
+            <option value="" disabled selected>Select property classification...</option>
+            <option value="Residential">Residential Estate / Single Family</option>
+            <option value="Commercial">Commercial Grounds / Corporate Facility</option>
+            <option value="Other">Other / Multi-Family Development</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Section 2: Scope & Execution Parameters -->
+    <fieldset class="form-fieldset">
+      <legend class="fieldset-legend">02 &middot; Project Scope &amp; Schedule</legend>
+      <div class="form-grid form-grid-2">
+        <!-- Service Required -->
+        <div class="form-group">
+          <label for={`${formId}-service`} class="form-label">
+            <span>Primary Service Required <span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <select
+            id={`${formId}-service`}
+            name="service_type"
+            class="form-select"
+            required
+          >
+            <option value="" disabled selected>Select primary practice...</option>
+            <option value="Landscape Design">Landscape Design &amp; Master Planning</option>
+            <option value="Garden Renovation">Garden Design &amp; Renovation</option>
+            <option value="Lawn Installation">Lawn Installation &amp; Turf Care</option>
+            <option value="Outdoor Living / Patio">Outdoor Living / Patio &amp; Hardscaping</option>
+            <option value="Plant & Tree Installation">Plant &amp; Specimen Tree Installation</option>
+            <option value="Commercial Landscaping">Commercial Landscaping &amp; Grounds</option>
+            <option value="Irrigation & Drainage">Irrigation &amp; Drainage Engineering</option>
+            <option value="Garden Maintenance">Garden Maintenance &amp; Seasonal Care</option>
+            <option value="Other">Other Custom Commission</option>
+          </select>
+        </div>
+
+        <!-- Estimated Budget -->
+        <div class="form-group">
+          <label for={`${formId}-budget`} class="form-label">
+            <span>Target Budget Allocation</span>
+            <span class="optional">Optional</span>
+          </label>
+          <select
+            id={`${formId}-budget`}
+            name="budget"
+            class="form-select"
+          >
+            <option value="" selected>Select approximate investment...</option>
+            <option value="Under $1,000">Under $1,000</option>
+            <option value="$1,000–$5,000">$1,000–$5,000</option>
+            <option value="$5,000–$10,000">$5,000–$10,000</option>
+            <option value="$10,000–$25,000">$10,000–$25,000</option>
+            <option value="$25,000+">$25,000+ (Master Landscape)</option>
+            <option value="Not sure yet">Not sure yet (Need Consultation)</option>
+          </select>
+        </div>
+
+        <!-- Timeline -->
+        <div class="form-group col-span-full">
+          <label for={`${formId}-timeline`} class="form-label">
+            <span>Preferred Timeline</span>
+            <span class="optional">Optional</span>
+          </label>
+          <select
+            id={`${formId}-timeline`}
+            name="timeline"
+            class="form-select"
+          >
+            <option value="" selected>Select commencement horizon...</option>
+            <option value="Immediately">Immediately (Active Site / Ready)</option>
+            <option value="Within 1 month">Within 1 month</option>
+            <option value="Within 3 months">Within 3 months</option>
+            <option value="Within 6 months">Within 6 months</option>
+            <option value="Just exploring">Just exploring (Early Planning)</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Section 3: Vision & Site Conditions -->
+    <fieldset class="form-fieldset">
+      <legend class="fieldset-legend">03 &middot; Project Vision &amp; Site Notes</legend>
+      <div class="form-group">
+        <label for={`${formId}-desc`} class="form-label">
+          <span>Project Description &amp; Desired Features <span class="req" aria-hidden="true">*</span></span>
+        </label>
+        <textarea
+          id={`${formId}-desc`}
+          name="message"
+          class="form-textarea"
+          rows="5"
+          placeholder="Please describe your outdoor space, existing site conditions (e.g. slope, drainage, existing trees), and specific features you envision (e.g. thermal bluestone terrace, perennial flower borders, cedar pergola, automated drip irrigation)."
+          required
+        ></textarea>
+      </div>
+    </fieldset>
+
+    <!-- Action & Submission Row -->
+    <div class="form-submit-stage">
+      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+        <span>Request My Free Estimate</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+      <p class="form-disclaimer">
+        Your data is transmitted securely to our estimating desk. We will review your site information and contact you within one business day.
+      </p>
+    </div>
+
+    <!-- Attribution immediately below form -->
+    <FormAttribution />
+  </form>
+</div>
+
+<style>
+  .quote-form-container {
+    scroll-margin-top: 6.5rem;
+    width: 100%;
+  }
+
+  .quote-header {
+    margin-bottom: 2rem;
+  }
+
+  .quote-title {
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    margin-bottom: 0.85rem;
+    line-height: 1.18;
+  }
+
+  .quote-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    line-height: 1.68;
+    max-width: 640px;
+  }
+
+  .bespoke-quote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .form-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .form-fieldset:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .fieldset-legend {
+    font-size: 0.825rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary-green);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .form-submit-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    align-items: center;
+    padding-top: 0.5rem;
+  }
+
+  .form-disclaimer {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+</style>
+
+<script>
+  import { attachAjaxFormHandler } from '../scripts/form-handler';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const quoteForm = document.getElementById('project-quote-form') as HTMLFormElement | null;
+    if (quoteForm) {
+      attachAjaxFormHandler(quoteForm);
+    }
+  });
+</script>

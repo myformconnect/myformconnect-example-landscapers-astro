@@ -1,0 +1,354 @@
+---
+import { COMPANY_INFO } from '../config/forms';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  imageSrc?: string;
+}
+
+const {
+  title = "Your outdoor space, thoughtfully transformed.",
+  subtitle = "Beautiful landscapes begin with a vision. We design and create outdoor spaces that bring nature, comfort, and everyday living together.",
+  primaryCtaText = "Request a Free Estimate",
+  primaryCtaHref = "/contact#quote",
+  secondaryCtaText = "Explore Our Projects",
+  secondaryCtaHref = "/projects",
+  imageSrc = "/images/hero_image.jpeg",
+} = Astro.props;
+---
+
+<section class="hero-editorial">
+  <!-- Top Architectural Coordinate Strip -->
+  <div class="hero-top-strip">
+    <div class="container hero-strip-inner">
+      <div class="strip-left">
+        <span class="strip-dot"></span>
+        <span class="strip-text">Now Accepting Seasonal Commissions &middot; Pacific Northwest Studio</span>
+      </div>
+      <div class="strip-right hide-mobile">
+        <span class="strip-text">45°31′12″ N, 122°40′55″ W &middot; Landscape Architecture &middot; Site Masonry</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Hero Stage -->
+  <div class="container hero-stage">
+    <div class="hero-grid">
+      <!-- Left Editorial Column -->
+      <div class="hero-copy-col">
+        <div class="eyebrow eyebrow-light">
+          <span>Evergreen Landscapes Studio</span>
+        </div>
+
+        <h1 class="hero-title">
+          Your outdoor space, <span class="serif-italic text-gold">thoughtfully transformed.</span>
+        </h1>
+
+        <p class="hero-desc">
+          {subtitle} From bespoke garden architecture and outdoor living terraces to precision turf grading and native planting schemes, we sculpt grounds built to flourish for generations.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href={primaryCtaHref} class="btn btn-gold btn-lg">
+            <span>{primaryCtaText}</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href={secondaryCtaHref} class="btn btn-outline-white btn-lg">
+            <span>{secondaryCtaText}</span>
+          </a>
+        </div>
+
+        <!-- Architectural Trust Statement -->
+        <div class="hero-trust-statement">
+          <span class="trust-label">Practice Focus:</span>
+          <p class="trust-value">{COMPANY_INFO.trustStatement}</p>
+        </div>
+      </div>
+
+      <!-- Right Visual Column -->
+      <div class="hero-visual-col">
+        <div class="hero-image-frame">
+          <img
+            src={imageSrc}
+            alt="Bespoke outdoor living patio and architectural garden designed by Evergreen Landscapes"
+            class="hero-main-img"
+            loading="eager"
+            fetchpriority="high"
+            width="1200"
+            height="900"
+          />
+
+          <!-- Floating Architectural Tag -->
+          <div class="hero-floating-meta">
+            <span class="meta-tag">Featured Commission</span>
+            <span class="meta-name">Westlake Sanctuary Grounds</span>
+            <span class="meta-details">Quarried Bluestone &middot; Native Sedges &middot; Cedar Pergola</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Editorial Credentials Ribbon -->
+  <div class="hero-bottom-ribbon">
+    <div class="container ribbon-inner">
+      <div class="ribbon-item">
+        <span class="ribbon-num">01</span>
+        <div class="ribbon-text">
+          <strong>Master Horticultural Design</strong>
+          <p>Microclimate-adapted native & perennial plant schemes</p>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <span class="ribbon-num">02</span>
+        <div class="ribbon-text">
+          <strong>Artisan Stone & Hardscaping</strong>
+          <p>Dry-stacked fieldstone, thermal bluestone & fire tables</p>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <span class="ribbon-num">03</span>
+        <div class="ribbon-text">
+          <strong>Smart Online Scheduling</strong>
+          <p>Direct consultation booking powered by MyFormConnect</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-editorial {
+    position: relative;
+    background: linear-gradient(165deg, var(--color-deep-forest) 0%, var(--color-dark-green) 50%, #143527 100%);
+    color: #FFFFFF;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    overflow: hidden;
+  }
+
+  /* Top Architectural Strip */
+  .hero-top-strip {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 0;
+    font-size: 0.75rem;
+    color: var(--color-text-inverse-muted);
+    letter-spacing: 0.05em;
+    background-color: rgba(11, 32, 23, 0.6);
+  }
+
+  .hero-strip-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .strip-left {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .strip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--color-gold);
+    box-shadow: 0 0 10px var(--color-gold);
+    animation: pulseGlow 2.5s infinite ease-in-out;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  /* Main Hero Stage */
+  .hero-stage {
+    padding-top: clamp(3.5rem, 6.5vw, 6rem);
+    padding-bottom: clamp(4rem, 7vw, 6.5rem);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 992px) {
+    .hero-grid {
+      grid-template-columns: 1.18fr 1fr;
+    }
+  }
+
+  .hero-copy-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+    line-height: 1.08;
+    color: #FFFFFF;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-desc {
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    line-height: 1.72;
+    color: var(--color-text-inverse-muted);
+    max-width: 580px;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.15rem;
+    margin-top: 0.75rem;
+  }
+
+  .hero-trust-statement {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-top: 1.65rem;
+    margin-top: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .trust-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-gold);
+  }
+
+  .trust-value {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #FFFFFF;
+  }
+
+  /* Right Visual Column */
+  .hero-visual-col {
+    position: relative;
+  }
+
+  .hero-image-frame {
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    aspect-ratio: 4 / 3.4;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    background-color: var(--color-deep-forest);
+  }
+
+  .hero-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-image-frame:hover .hero-main-img {
+    transform: scale(1.04);
+  }
+
+  .hero-floating-meta {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    background: rgba(11, 32, 23, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    border-radius: var(--radius-xs);
+    padding: 1rem 1.35rem;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  }
+
+  .meta-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-gold);
+  }
+
+  .meta-name {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: #FFFFFF;
+  }
+
+  .meta-details {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.02em;
+  }
+
+  /* Bottom Ribbon */
+  .hero-bottom-ribbon {
+    background-color: var(--color-deep-forest);
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    padding: 2.25rem 0;
+  }
+
+  .ribbon-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .ribbon-inner {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+  }
+
+  .ribbon-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.15rem;
+  }
+
+  .ribbon-num {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--color-gold);
+    font-style: italic;
+    flex-shrink: 0;
+  }
+
+  .ribbon-text strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #FFFFFF;
+    margin-bottom: 0.25rem;
+  }
+
+  .ribbon-text p {
+    font-size: 0.825rem;
+    color: var(--color-text-inverse-muted);
+    line-height: 1.5;
+  }
+</style>

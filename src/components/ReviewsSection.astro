@@ -1,0 +1,318 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+export interface ReviewItem {
+  name: string;
+  role: string;
+  location: string;
+  commissionType: string;
+  rating: number;
+  quote: string;
+}
+
+const reviews: ReviewItem[] = [
+  {
+    name: 'David & Caroline Miller',
+    role: 'Homeowners',
+    location: 'Lake Oswego, OR',
+    commissionType: '1.5-Acre Estate Renovation',
+    rating: 5,
+    quote:
+      'Evergreen Landscapes completely reimagined our property. From the initial 3D topographical survey to the hand-laid thermal bluestone terrace and layered native woodland borders, their team demonstrated an extraordinary depth of architectural precision and horticultural care.',
+  },
+  {
+    name: 'Katherine Sterling',
+    role: 'Residential Client',
+    location: 'West Hills, OR',
+    commissionType: 'Outdoor Patio & Fire Feature',
+    rating: 5,
+    quote:
+      'The transition between our interior living space and the new cedar pergola and gas fire table feels completely seamless. The crew was punctual, respectful of the site, and their communication through the MyFormConnect booking and proposal system was effortless.',
+  },
+  {
+    name: 'Marcus Vance',
+    role: 'Managing Director',
+    location: 'Pearl District, OR',
+    commissionType: 'Corporate Campus Courtyard',
+    rating: 5,
+    quote:
+      'We engaged Evergreen Landscapes for our tech plaza renovation. Their selection of drought-tolerant fescues, architectural steel planters, and crushed basalt paths elevated our commercial presence while dramatically reducing our seasonal irrigation requirements.',
+  },
+];
+
+const stats = [
+  { value: '15+ Years', label: 'Pacific Northwest Experience' },
+  { value: '140+', label: 'Commissions Completed' },
+  { value: '100%', label: 'Native & Adaptive Flora' },
+  { value: '24-Hour', label: 'Estimate Response Guarantee' },
+];
+---
+
+<section class="reviews-section section-padding" style="background-color: var(--bg-secondary);">
+  <div class="container">
+    <SectionHeading
+      eyebrow="Client Experiences"
+      title="Words from our clients."
+      subtitle="Read how thoughtful design, meticulous stonework, and regional horticulture have transformed outdoor living across the Pacific Northwest."
+    />
+
+    <!-- Trust Stats Ribbon -->
+    <div class="reviews-stats-ribbon">
+      {stats.map((s) => (
+        <div class="stat-cell">
+          <span class="stat-number">{s.value}</span>
+          <span class="stat-text">{s.label}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Editorial Reviews Grid -->
+    <div class="reviews-grid">
+      {reviews.map((r) => (
+        <article class="review-editorial-card">
+          <div class="review-card-top">
+            <!-- 5 Star Rating -->
+            <div class="review-stars" aria-label={`${r.rating} out of 5 stars`}>
+              {Array.from({ length: r.rating }).map(() => (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#C5A059" stroke="#C5A059" stroke-width="1" aria-hidden="true">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              ))}
+            </div>
+            <span class="review-location-tag">{r.location}</span>
+          </div>
+
+          <blockquote class="review-body">
+            <p>"{r.quote}"</p>
+          </blockquote>
+
+          <footer class="review-footer">
+            <div class="author-avatar" aria-hidden="true">
+              {r.name.charAt(0)}
+            </div>
+            <div class="author-info">
+              <cite class="author-name">{r.name}</cite>
+              <span class="author-commission">{r.commissionType}</span>
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom Proof & Disclosure -->
+    <div class="reviews-bottom-strip">
+      <div class="proof-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg>
+        <span>Rated <strong>4.9 / 5</strong> across residential estate and commercial clients.</span>
+      </div>
+      <p class="demo-caption">
+        *Illustrative demonstration reviews depicting client feedback and commission experiences.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    position: relative;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Stats Ribbon */
+  .reviews-stats-ribbon {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    box-shadow: var(--shadow-card);
+  }
+
+  @media (min-width: 640px) {
+    .reviews-stats-ribbon {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .reviews-stats-ribbon {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .stat-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .stat-cell:not(:last-child) {
+      border-right: 1px solid var(--color-border-subtle);
+    }
+  }
+
+  .stat-number {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 500;
+    color: var(--color-primary-green);
+    line-height: 1.1;
+  }
+
+  .stat-text {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* Reviews Grid */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .reviews-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .review-editorial-card {
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: clamp(1.75rem, 3.5vw, 2.35rem);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: var(--shadow-card);
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+  }
+
+  .review-editorial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(27, 77, 54, 0.4);
+  }
+
+  .review-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .review-stars {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  .review-location-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary-green);
+    background-color: var(--color-sage-tint);
+    border: 1px solid rgba(27, 77, 54, 0.15);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-xs);
+  }
+
+  .review-body {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .review-body p {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    font-style: italic;
+  }
+
+  .review-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .author-avatar {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 50%;
+    background-color: var(--color-primary-green);
+    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .author-name {
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-dark-green);
+  }
+
+  .author-commission {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Bottom Strip */
+  .reviews-bottom-strip {
+    margin-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .proof-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-dark-green);
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .proof-badge svg {
+    color: var(--color-gold);
+  }
+
+  .demo-caption {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+  }
+</style>

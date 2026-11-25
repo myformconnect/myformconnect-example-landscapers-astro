@@ -1,0 +1,20 @@
+{
+  "name": "evergreen-landscapes",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Evergreen Landscapes - Modern Landscaping Business Website with MyFormConnect Integration",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.1.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,504 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* ==========================================================================
+   EVERGREEN LANDSCAPES — ULTRA-PREMIUM RICH GREEN & GOLD DESIGN SYSTEM
+   Deep Royal Forest Green &middot; Rich Botanical Emerald &middot; Warm Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* Rich Green Royalty & Earth Luxury Palette */
+  --bg-primary: #FAF8F5;          /* Warm Ivory / Linen canvas */
+  --bg-surface: #FFFFFF;          /* Pure Crisp Alabaster */
+  --bg-secondary: #F2EFE9;        /* Warm Stone Parchment */
+  --bg-tertiary: #E5EBE3;         /* Subtle Sage Mist */
+
+  --color-dark-green: #0F291E;    /* Deep Royal Forest Green */
+  --color-deep-forest: #0B2017;   /* Midnight Evergreen */
+  --color-primary-green: #1B4D36; /* Rich Botanical Emerald */
+  --color-primary-hover: #246246; /* Vibrant Pine Accent */
+  --color-moss: #335C45;          /* Deep Moss Green */
+
+  --color-sage: #8BA894;          /* Soft Foliage Sage */
+  --color-sage-light: #D5E2D6;    /* Pale Sage Foam */
+  --color-sage-tint: #EEF4EE;     /* Ultra-light Botanical Tint */
+
+  /* Luxury Gold / Champagne Accents */
+  --color-gold: #C5A059;          /* Antique Champagne Gold */
+  --color-gold-hover: #D4B06A;    /* Radiant Gold */
+  --color-gold-tint: rgba(197, 160, 89, 0.12);
+  --color-gold-border: rgba(197, 160, 89, 0.35);
+
+  /* Deep High-Contrast Typography */
+  --color-text: #111C16;          /* Deep Obsidian Evergreen */
+  --color-text-secondary: #4A574E;/* Refined Forest Slate */
+  --color-text-muted: #76847A;    /* Soft Mineral Green */
+  --color-text-inverse: #FAF8F5;  /* Ivory Inverse */
+  --color-text-inverse-muted: #CCD8CF;
+
+  /* Architectural Hairlines */
+  --color-border: rgba(15, 41, 30, 0.12);
+  --color-border-subtle: rgba(15, 41, 30, 0.07);
+  --color-border-dark: rgba(255, 255, 255, 0.16);
+  --color-border-focus: #1B4D36;
+
+  /* MyFormConnect Integration Accent */
+  --color-mfc-blue: #2563EB;
+  --color-mfc-blue-hover: #1D4ED8;
+  --color-mfc-blue-tint: rgba(37, 99, 235, 0.08);
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing & Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  /* Premium Diffused Shadows */
+  --shadow-subtle: 0 2px 6px rgba(15, 41, 30, 0.04);
+  --shadow-card: 0 8px 24px -4px rgba(15, 41, 30, 0.07);
+  --shadow-hover: 0 20px 40px -6px rgba(15, 41, 30, 0.14);
+  --shadow-dark: 0 24px 48px -12px rgba(0, 0, 0, 0.45);
+
+  --transition-fast: 0.18s ease;
+  --transition-smooth: 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+  --container-max: 1280px;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-text);
+  background-color: var(--bg-primary);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+}
+
+img, picture, svg, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.16;
+  color: var(--color-dark-green);
+  letter-spacing: -0.015em;
+}
+
+h1 { font-size: clamp(2.75rem, 5.6vw, 4.4rem); }
+h2 { font-size: clamp(2.15rem, 4vw, 3.2rem); }
+h3 { font-size: clamp(1.45rem, 2.6vw, 2rem); }
+h4 { font-size: 1.25rem; font-family: var(--font-sans); font-weight: 600; letter-spacing: -0.01em; }
+
+p {
+  color: var(--color-text-secondary);
+  line-height: 1.72;
+}
+
+.serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4.5vw, 3rem);
+  padding-right: clamp(1.25rem, 4.5vw, 3rem);
+}
+
+.section-padding {
+  padding-top: clamp(5.5rem, 9vw, 9rem);
+  padding-bottom: clamp(5.5rem, 9vw, 9rem);
+}
+
+.section-padding-sm {
+  padding-top: clamp(3.75rem, 6vw, 6rem);
+  padding-bottom: clamp(3.75rem, 6vw, 6rem);
+}
+
+/* Architectural Eyebrows & Badges */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-primary-green);
+  margin-bottom: 0.85rem;
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-gold);
+}
+
+.eyebrow-light {
+  color: var(--color-gold);
+}
+
+.eyebrow-light::before {
+  background-color: var(--color-gold);
+}
+
+/* Centered Eyebrow & Alignment Utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-center .eyebrow,
+.section-header.text-center .eyebrow {
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center .eyebrow::after,
+.section-header.text-center .eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-gold);
+}
+
+/* Button Craftsmanship */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.95rem 1.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-xs);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  text-align: center;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: var(--color-primary-green);
+  color: #FFFFFF;
+  border-color: var(--color-primary-green);
+  box-shadow: 0 4px 16px rgba(27, 77, 54, 0.28);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(27, 77, 54, 0.36);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-dark-green);
+  border-color: rgba(15, 41, 30, 0.28);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary-green);
+  background-color: rgba(27, 77, 54, 0.06);
+  color: var(--color-primary-green);
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  background-color: var(--color-gold);
+  color: #FFFFFF;
+  border-color: var(--color-gold);
+  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.35);
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold-hover);
+  border-color: var(--color-gold-hover);
+  transform: translateY(-2px);
+}
+
+.btn-white {
+  background-color: #FFFFFF;
+  color: var(--color-dark-green);
+  border-color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.btn-white:hover {
+  background-color: var(--bg-primary);
+  border-color: var(--bg-primary);
+  color: var(--color-primary-green);
+  transform: translateY(-2px);
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.btn-outline-white:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 0.65rem 1.35rem;
+  font-size: 0.825rem;
+}
+
+.btn-lg {
+  padding: 1.1rem 2.25rem;
+  font-size: 0.95rem;
+}
+
+.btn:disabled, .btn[aria-busy="true"] {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #FFFFFF;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Form Styling & Architecture */
+.form-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: clamp(2rem, 4.5vw, 3.25rem);
+  box-shadow: var(--shadow-card);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.35rem;
+}
+
+@media (min-width: 640px) {
+  .form-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-group.col-span-full {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-dark-green);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label .req {
+  color: #B91C1C;
+  font-weight: 700;
+}
+
+.form-label .optional {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.85rem 1.05rem;
+  font-size: 0.925rem;
+  color: var(--color-text);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-primary-green);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(27, 77, 54, 0.12);
+}
+
+.form-textarea {
+  min-height: 128px;
+  resize: vertical;
+}
+
+.form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231B4D36' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* Status Notifications */
+.form-status-message {
+  display: none;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-xs);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.form-status-message .status-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.form-status-message.status-success {
+  background-color: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  color: #065F46;
+}
+
+.form-status-message.status-error {
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #991B1B;
+}
+
+/* MyFormConnect Attribution */
+.mfc-attribution {
+  margin-top: 1.35rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.mfc-attribution a {
+  color: var(--color-mfc-blue);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color var(--transition-fast);
+}
+
+.mfc-attribution a:hover {
+  color: var(--color-mfc-blue-hover);
+  text-decoration: underline;
+}
+
+/* Editorial Section Header */
+.section-header {
+  margin-bottom: clamp(2.75rem, 5vw, 4.5rem);
+}
+
+.section-header.text-center {
+  text-align: center;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-header .section-subtitle {
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  color: var(--color-text-secondary);
+  margin-top: 0.9rem;
+  line-height: 1.68;
+}
+
+/* Architectural Card Hover Effects */
+.card-hover {
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(27, 77, 54, 0.35);
+}

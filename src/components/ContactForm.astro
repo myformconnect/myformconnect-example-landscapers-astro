@@ -1,0 +1,162 @@
+---
+import { FORM_URLS } from '../config/forms';
+import FormAttribution from './FormAttribution.astro';
+
+interface Props {
+  actionUrl?: string;
+  formId?: string;
+  isCard?: boolean;
+}
+
+const {
+  actionUrl = FORM_URLS.enquiry,
+  formId = "general-enquiry-form",
+  isCard = false,
+} = Astro.props;
+---
+
+<div class="contact-form-wrapper">
+  <form
+    id={formId}
+    action={actionUrl}
+    method="POST"
+    class={`general-contact-form ${isCard ? 'form-card' : 'form-seamless'}`}
+    novalidate
+  >
+    <!-- Rule 6: Honeypot spam defense -->
+    <input
+      type="text"
+      name="_gotcha"
+      style="display:none;"
+      tabindex="-1"
+      autocomplete="off"
+    />
+
+    <!-- Dynamic Status Message Container -->
+    <div class="form-status-message" role="alert" aria-live="polite"></div>
+
+    <div class="form-grid">
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for={`${formId}-name`} class="form-label">
+          <span>Full Name <span class="req" aria-hidden="true">*</span></span>
+        </label>
+        <input
+          type="text"
+          id={`${formId}-name`}
+          name="name"
+          class="form-input"
+          placeholder="e.g. Eleanor Vance"
+          required
+          autocomplete="name"
+        />
+      </div>
+
+      <!-- Email Address -->
+      <div class="form-group">
+        <label for={`${formId}-email`} class="form-label">
+          <span>Email Address <span class="req" aria-hidden="true">*</span></span>
+        </label>
+        <input
+          type="email"
+          id={`${formId}-email`}
+          name="email"
+          class="form-input"
+          placeholder="e.g. eleanor@example.com"
+          required
+          autocomplete="email"
+        />
+      </div>
+
+      <!-- Phone Number (Optional) -->
+      <div class="form-group">
+        <label for={`${formId}-phone`} class="form-label">
+          <span>Phone Number</span>
+          <span class="optional">Optional</span>
+        </label>
+        <input
+          type="tel"
+          id={`${formId}-phone`}
+          name="phone"
+          class="form-input"
+          placeholder="e.g. (503) 234-5678"
+          autocomplete="tel"
+        />
+      </div>
+
+      <!-- Enquiry Subject -->
+      <div class="form-group">
+        <label for={`${formId}-subject`} class="form-label">
+          <span>Enquiry Subject <span class="req" aria-hidden="true">*</span></span>
+        </label>
+        <select
+          id={`${formId}-subject`}
+          name="subject"
+          class="form-select"
+          required
+        >
+          <option value="" disabled selected>Select an enquiry subject...</option>
+          <option value="General Enquiry">General Enquiry</option>
+          <option value="Landscaping Services">Landscaping Services</option>
+          <option value="Garden Maintenance">Garden Maintenance</option>
+          <option value="Commercial Landscaping">Commercial Landscaping</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <!-- Message -->
+      <div class="form-group col-span-full">
+        <label for={`${formId}-message`} class="form-label">
+          <span>Your Message <span class="req" aria-hidden="true">*</span></span>
+        </label>
+        <textarea
+          id={`${formId}-message`}
+          name="message"
+          class="form-textarea"
+          rows="4"
+          placeholder="How can we assist you with your garden or outdoor space?"
+          required
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-submit-row">
+      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+        <span>Send Message</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Attribution immediately below form -->
+    <FormAttribution />
+  </form>
+</div>
+
+<style>
+  .contact-form-wrapper {
+    width: 100%;
+  }
+
+  .form-seamless {
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .form-submit-row {
+    margin-top: 1.5rem;
+  }
+</style>
+
+<script>
+  import { attachAjaxFormHandler } from '../scripts/form-handler';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const forms = document.querySelectorAll<HTMLFormElement>('.general-contact-form');
+    forms.forEach((form) => attachAjaxFormHandler(form));
+  });
+</script>

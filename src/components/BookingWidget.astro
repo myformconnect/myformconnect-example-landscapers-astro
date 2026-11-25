@@ -1,0 +1,251 @@
+---
+import { BOOKING_CONFIG } from '../config/forms';
+import FormAttribution from './FormAttribution.astro';
+
+interface Props {
+  uuid?: string;
+  submitUrl?: string;
+  slotsUrl?: string;
+  apiBase?: string;
+  meetingTitle?: string;
+  meetingDescription?: string;
+  meetingDuration?: number;
+}
+
+const {
+  uuid = BOOKING_CONFIG.uuid,
+  submitUrl = BOOKING_CONFIG.submitUrl,
+  slotsUrl = BOOKING_CONFIG.slotsUrl,
+  apiBase = BOOKING_CONFIG.apiBase,
+  meetingTitle = BOOKING_CONFIG.meetingTitle,
+  meetingDescription = BOOKING_CONFIG.meetingDescription,
+  meetingDuration = BOOKING_CONFIG.meetingDuration,
+} = Astro.props;
+---
+
+<div class="booking-section-wrapper" id="booking">
+  <div class="booking-header">
+    <div class="eyebrow">
+      <span>Interactive Consultation Scheduling</span>
+    </div>
+    <h2 class="booking-title">Let's walk through your project.</h2>
+    <p class="booking-subtitle">
+      Schedule a dedicated 30-minute site consultation to walk your grounds, discuss your landscaping ideas, and explore design possibilities with our principal team.
+    </p>
+  </div>
+
+  <div class="booking-stage-card">
+    <!-- Consultation Scope Strip -->
+    <div class="consultation-scope-bar">
+      <div class="scope-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span>Site Topography &amp; Sun Assessment</span>
+      </div>
+      <div class="scope-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span>Horticultural Soil &amp; Tree Review</span>
+      </div>
+      <div class="scope-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span>Preliminary Material &amp; Budget Scoping</span>
+      </div>
+    </div>
+
+    <!-- Custom local widget stylesheet -->
+    <link rel="stylesheet" href="/booking-widget.css" />
+
+    <!-- Mandatory MFC Booking Widget Mount Container (Strictly configured per specification) -->
+    <div
+      id="mfc-booking-widget"
+      data-booking-widget=""
+      data-form-uuid={uuid}
+      data-api-base={apiBase}
+      data-submit-url={submitUrl}
+      data-slots-url={slotsUrl}
+      data-meeting-title={meetingTitle}
+      data-meeting-description={meetingDescription}
+      data-meeting-duration={meetingDuration}
+      data-branding-name={BOOKING_CONFIG.brandingName}
+      data-branding-url={BOOKING_CONFIG.brandingUrl}
+    >
+      <!-- Initial Loading Placeholder replaced by booking-widget.js -->
+      <div class="mfc-widget-placeholder">
+        <div class="mfc-placeholder-spinner" aria-hidden="true"></div>
+        <p class="mfc-placeholder-text">Connecting to consultation calendar…</p>
+      </div>
+
+      <!-- Noscript Fallback Form (Permits direct submission if JavaScript is disabled) -->
+      <noscript>
+        <div class="mfc-noscript-box">
+          <h3 class="mfc-noscript-title">Schedule a Landscaping Consultation</h3>
+          <p class="mfc-noscript-desc">
+            Complete the form below to request your 30-minute landscape walkthrough:
+          </p>
+          <form
+            action={submitUrl}
+            method="POST"
+            class="mfc-noscript-form"
+          >
+            <!-- Rule 6: Honeypot spam input -->
+            <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />
+
+            <div class="form-group" style="margin-bottom: 0.85rem;">
+              <label class="form-label" for="ns-booking-name">Full Name *</label>
+              <input type="text" id="ns-booking-name" name="name" class="form-input" required />
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0.85rem;">
+              <label class="form-label" for="ns-booking-email">Email Address *</label>
+              <input type="email" id="ns-booking-email" name="email" class="form-input" required />
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0.85rem;">
+              <label class="form-label" for="ns-booking-company">Property / Company (Optional)</label>
+              <input type="text" id="ns-booking-company" name="company" class="form-input" />
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0.85rem;">
+              <label class="form-label" for="ns-booking-date">Preferred Date</label>
+              <input type="date" id="ns-booking-date" name="preferred_date" class="form-input" />
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0.85rem;">
+              <label class="form-label" for="ns-booking-notes">Project Notes &amp; Consultation Goals</label>
+              <textarea id="ns-booking-notes" name="message" class="form-textarea" rows="3" placeholder="Briefly describe what you would like to explore..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1rem;">
+              Submit Consultation Request
+            </button>
+          </form>
+        </div>
+      </noscript>
+    </div>
+
+    <!-- Booking widget client runtime script -->
+    <script src="/booking-widget.js" defer></script>
+
+    <!-- Re-dispatch DOM events to guarantee widget mount on route transitions -->
+    <script is:inline>
+      (function () {
+        function initBookingWidget() {
+          document.dispatchEvent(new Event('DOMContentLoaded'));
+          document.dispatchEvent(new Event('turbo:render'));
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initBookingWidget);
+        } else {
+          initBookingWidget();
+        }
+      })();
+    </script>
+
+    <!-- Attribution immediately below widget -->
+    <FormAttribution />
+  </div>
+</div>
+
+<style>
+  .booking-section-wrapper {
+    scroll-margin-top: 6.5rem;
+    width: 100%;
+  }
+
+  .booking-header {
+    margin-bottom: 2rem;
+  }
+
+  .booking-title {
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    margin-bottom: 0.85rem;
+    line-height: 1.18;
+  }
+
+  .booking-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    line-height: 1.68;
+    max-width: 640px;
+  }
+
+  .booking-stage-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    box-shadow: var(--shadow-card);
+  }
+
+  .consultation-scope-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .scope-item {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-dark-green);
+  }
+
+  .scope-item svg {
+    color: var(--color-primary-green);
+    flex-shrink: 0;
+  }
+
+  .mfc-widget-placeholder {
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-text-secondary);
+  }
+
+  .mfc-placeholder-spinner {
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 3px solid rgba(27, 48, 38, 0.15);
+    border-top-color: var(--color-primary-green);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .mfc-placeholder-text {
+    font-size: 0.925rem;
+    font-weight: 500;
+  }
+
+  .mfc-noscript-box {
+    padding: 1.75rem;
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+  }
+
+  .mfc-noscript-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark-green);
+  }
+
+  .mfc-noscript-desc {
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+    color: var(--color-text-secondary);
+  }
+</style>

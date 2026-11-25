@@ -1,0 +1,33 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+  light?: boolean;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  align = 'center',
+  light = false,
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`section-header ${align === 'center' ? 'text-center' : ''} ${className}`}>
+  {eyebrow && (
+    <span class={`eyebrow ${light ? 'eyebrow-light' : ''}`}>
+      {eyebrow}
+    </span>
+  )}
+  <h2 style={light ? 'color: #FFFFFF;' : undefined}>{title}</h2>
+  {subtitle && (
+    <p class="section-subtitle" style={light ? 'color: rgba(255, 255, 255, 0.85);' : undefined}>
+      {subtitle}
+    </p>
+  )}
+</div>
